@@ -8,7 +8,7 @@ Demo online: https://gxmich.github.io/lieve-club-femminile-demo/
 
 ## Cosa mostra la demo
 
-Una pagina unica per un club di allenamento femminile con sessioni guidate da 30 minuti:
+Una sola pagina per un club di allenamento femminile con sessioni guidate da 30 minuti:
 
 - **Ingresso animato**: il nome del club, disegnato in tracciati vettoriali, si apre sulla foto della home.
   Si può saltare, compare una volta per sessione e non parte con «riduci movimento».
