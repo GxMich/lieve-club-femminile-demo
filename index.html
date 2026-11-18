@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LIEVE club femminile · sito dimostrativo</title>
+  <meta name="description" content="LIEVE è un club femminile di fantasia: sito dimostrativo con allenamenti guidati di 30 minuti, corsi, prenotazione simulata e Carta Prova.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="LIEVE club femminile (demo)">
+  <meta property="og:title" content="LIEVE club femminile · sito dimostrativo">
+  <meta property="og:description" content="Club femminile di fantasia: mezz'ora guidata, in gruppo, senza giudizio. Nomi e dati inventati.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta name="theme-color" content="#EBCDC8">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="preload" as="font" href="assets/fonts/bricolage-grotesque.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="assets/fonts/figtree.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="assets/img/squadra-1600.webp" imagesrcset="assets/img/squadra-800.webp 800w, assets/img/squadra-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      const returning = sessionStorage.getItem('lieve-intro-seen');
+      const back = performance.getEntriesByType('navigation')[0]?.type === 'back_forward';
+      if (!returning && !back && !location.hash && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('intro-pending');
+      }
+    } catch (_) { /* Il sito resta disponibile anche senza storage. */ }
+    // Anche un errore di rete o JavaScript deve lasciare accessibile la pagina.
+    window.lieveIntroFailsafe = setTimeout(() => {
+      document.documentElement.classList.remove('intro-pending');
+      document.documentElement.classList.add('no-motion');
+      document.querySelector('[data-intro]')?.remove();
+      document.querySelectorAll('[data-intro-inert]').forEach(el => { el.inert = false; });
+      document.querySelector('[data-hero-content]')?.removeAttribute('style');
+    }, 6000);
+  </script>
+</head>
+<body>
+  <div class="intro" data-intro>
+    <svg class="intro-svg" aria-hidden="true" data-intro-svg>
+      <defs>
+        <g id="intro-word">
+          <path class="intro-letter" data-letter="L" d="M102.67 220V0H156.67V220ZM112 220V174H240.33V220Z"/>
+          <path class="intro-letter" data-letter="I" d="M260.33 220V0H314.67V220Z"/>
+          <path class="intro-letter" data-letter="E" d="M334.67 220V0H388.67V220ZM375 220V175H492V220ZM375 129.33V89H476.67V129.33ZM375 45V0H492V45Z"/>
+          <path class="intro-letter" data-letter="V" d="M581.33 220 512 0H570.67L616 175.33H617L661.33 0H720L650.67 220Z"/>
+          <path class="intro-letter" data-letter="E" d="M740 220V0H794V220ZM780.33 220V175H897.33V220ZM780.33 129.33V89H882V129.33ZM780.33 45V0H897.33V45Z"/>
+        </g>
+        <mask id="intro-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%" style="mask-type:luminance">
+          <rect width="100%" height="100%" fill="white"/>
+          <g data-intro-scale fill="black"><use href="#intro-word"/></g>
+        </mask>
+      </defs>
+      <rect class="intro-matte" width="100%" height="100%" mask="url(#intro-cut)"/>
+    </svg>
+    <div class="intro-wordmark" data-intro-wordmark aria-hidden="true"></div>
+    <div class="intro-caption" data-intro-caption>
+      <p>Club femminile <span>Pianvecchio</span></p>
+      <p class="intro-status" role="status">Stiamo aprendo la porta.</p>
+    </div>
+    <button class="intro-skip" type="button" data-intro-skip>Entra subito <span aria-hidden="true">↗</span></button>
+  </div>
+  <a class="skip" href="#contenuto">Vai al contenuto</a>
+
+  <!-- Simboli riutilizzati -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="farfalla" viewBox="0 0 64 48">
+      <path d="M32 44C32 30 26 18 12 10c10 0 20 6 20 18 0-12 10-18 20-18-14 8-20 20-20 34Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M32 44V20M32 20c-3-6-3-12 0-16 3 4 3 10 0 16Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="wa" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm3 6.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Zm5 0a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6Z"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="LIEVE, torna all'inizio">
+      <span class="brand-word">LIEVE <small>club femminile</small></span>
+    </a>
+    <div class="header-actions">
+      <a class="pill pill-solid header-cta" href="#pass">Prova 14 giorni</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn>
+        <span class="menu-btn-label">Menu</span>
+        <span class="menu-btn-icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu hidden>
+    <nav class="menu-nav" aria-label="Sezioni">
+      <a href="#metodo"><span>Il metodo</span><img src="assets/img/stretching-800.webp" alt="" loading="lazy"></a>
+      <a href="#corsi"><span>I corsi</span><img src="assets/img/sala-lezione-800.webp" alt="" loading="lazy"></a>
+      <a href="#fondatrice"><span>Chi siamo</span><img src="assets/img/team-800.webp" alt="" loading="lazy"></a>
+      <a href="#pass"><span>Carta Prova</span><img src="assets/img/palloncini-800.webp" alt="" loading="lazy"></a>
+      <a href="#contatti"><span>Contatti</span><img src="assets/img/reception-800.webp" alt="" loading="lazy"></a>
+    </nav>
+    <div class="menu-foot">
+      <p>Via dei Tigli 8, Pianvecchio<br>Lun–ven 8:00–20:30, sabato 9:00–13:00</p>
+      <a class="pill pill-light" href="#demo-wa?text=Ciao%20LIEVE!%20Vorrei%20qualche%20informazione."><svg class="i"><use href="#wa"/></svg> +39 000 000 0000</a>
+    </div>
+  </div>
+
+  <main id="contenuto">
+
+    <!-- 1 · HERO: il preloader vettoriale si apre sulla foto, senza richiedere scroll. -->
+    <section class="hero" id="top" data-hero>
+      <div class="hero-stage">
+        <div class="hero-media" data-hero-media>
+          <img src="assets/img/squadra-1600.webp" srcset="assets/img/squadra-800.webp 800w, assets/img/squadra-1600.webp 1600w" sizes="100vw" width="1600" height="1067" fetchpriority="high" decoding="async" alt="Lezione di gruppo in una sala luminosa: l'istruttrice sorride in prima fila, le socie dietro di lei.">
+        </div>
+        <div class="hero-scrim" aria-hidden="true"></div>
+
+        <div class="hero-content" data-hero-content>
+          <h1>Mezz'ora.<br>Tutta tua.<br>Più leggera.</h1>
+          <div class="hero-bottom">
+            <p>Allenamenti guidati da trenta minuti, con un'istruttrice sempre in sala. A Pianvecchio, il club per sole donne dove cominciare senza sentirti fuori posto.</p>
+            <div class="hero-ctas">
+              <a class="pill pill-solid pill-lg" href="#pass">Prova 14 giorni a 24 €</a>
+              <a class="pill pill-glass pill-lg" href="#demo-wa?text=Ciao%20LIEVE!%20Vorrei%20qualche%20informazione."><svg class="i"><use href="#wa"/></svg> Scrivici in chat</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p class="sr-only">LIEVE, club femminile di fantasia a Pianvecchio. Sito dimostrativo.</p>
+    </section>
+
+    <!-- 2 · NASTRO -->
+    <div class="ribbon" aria-hidden="true">
+      <div class="ribbon-track" data-ribbon>
+        <span>Solo donne</span><svg><use href="#farfalla"/></svg>
+        <span>30 minuti</span><svg><use href="#farfalla"/></svg>
+        <span>Un'istruttrice in sala</span><svg><use href="#farfalla"/></svg>
+        <span>Al tuo ritmo</span><svg><use href="#farfalla"/></svg>
+        <span>Carichi leggeri</span><svg><use href="#farfalla"/></svg>
+        <span>In compagnia</span><svg><use href="#farfalla"/></svg>
+        <span>Solo donne</span><svg><use href="#farfalla"/></svg>
+        <span>30 minuti</span><svg><use href="#farfalla"/></svg>
+        <span>Un'istruttrice in sala</span><svg><use href="#farfalla"/></svg>
+        <span>Al tuo ritmo</span><svg><use href="#farfalla"/></svg>
+        <span>Carichi leggeri</span><svg><use href="#farfalla"/></svg>
+        <span>In compagnia</span><svg><use href="#farfalla"/></svg>
+      </div>
+    </div>
+
+    <!-- 3 · MANIFESTO -->
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <h2 id="manifesto-title" class="sr-only">Cos'è LIEVE</h2>
+      <figure class="float float-a" data-speed="-0.25"><img src="assets/img/spogliatoio-800.webp" width="800" height="560" loading="lazy" alt="Due socie sedute nello spogliatoio, una si allaccia le scarpe."></figure>
+      <figure class="float float-b" data-speed="0.2"><img src="assets/img/salotto-800.webp" width="800" height="1200" loading="lazy" alt="I divanetti rosa dell'area relax, con le piante."></figure>
+      <figure class="float float-c" data-speed="-0.4"><img src="assets/img/mamma-bimba-800.webp" width="800" height="533" loading="lazy" alt="Tre socie con i tappetini arrotolati sotto il braccio."></figure>
+      <p class="manifesto-text" data-words>LIEVE è un club dove le donne si allenano insieme, guidate da altre donne. Trenta minuti alla volta, al ritmo di ciascuna, con qualcuna che ti saluta per nome e un divanetto dove fermarsi dopo.</p>
+      <ul class="facts">
+        <li><b>30'</b><span>a sessione, si parte ogni mezz'ora</span></li>
+        <li><b>5</b><span>corsi, dal circuito al Pilates</span></li>
+        <li><b>15</b><span>anni di lavoro della fondatrice in sala</span></li>
+        <li><b>2023</b><span>l'apertura in via dei Tigli</span></li>
+      </ul>
+    </section>
+
+    <!-- 4 · METODO: il timer della mezz'ora -->
+    <section class="method" id="metodo" aria-labelledby="method-title">
+      <div class="method-scroll" data-method-scroll>
+      <div class="method-pin" data-method>
+        <div class="method-clock">
+          <svg viewBox="0 0 200 200" class="ring" aria-hidden="true">
+            <circle cx="100" cy="100" r="90" class="ring-bg"/>
+            <circle cx="100" cy="100" r="90" class="ring-fg" pathLength="100" data-ring/>
+          </svg>
+          <div class="clock-read">
+            <span class="clock-time" data-clock>00:00</span>
+            <span class="clock-label" data-clock-label>la tua mezz'ora</span>
+          </div>
+        </div>
+        <div class="method-copy">
+          <h2 id="method-title">Il Metodo LIEVE</h2>
+          <p class="method-lead">Trenta minuti in piccolo gruppo, sempre con un'istruttrice. Si alternano carichi leggeri ed esercizi a corpo libero, partendo dal punto in cui sei oggi.</p>
+          <ol class="method-steps">
+            <li data-step><b>Arrivi e ti salutano</b><span>L'istruttrice sa da dove parti e su cosa vuoi lavorare.</span></li>
+            <li data-step><b>Carichi leggeri, in piedi</b><span>Ti mostra i movimenti e ti aiuta a scegliere il peso giusto.</span></li>
+            <li data-step><b>Corpo libero, a tempo</b><span>Si cambia esercizio, si chiacchiera, si suda il giusto.</span></li>
+            <li data-step><b>Finito. Riprendi la giornata</b><span>Mezz'ora che entra tra il lavoro, la spesa e i bambini.</span></li>
+          </ol>
+        </div>
+      </div>
+      </div>
+
+      <div class="slots" data-slots>
+        <div class="slots-head">
+          <h3>Scegli la tua mezz'ora</h3>
+          <p>Scegli giorno e orario: prepariamo il messaggio per chiedere se c'è posto. Nella demo il messaggio si vede a schermo e non parte.</p>
+        </div>
+        <div class="slots-days" role="radiogroup" aria-label="Giorno" data-days></div>
+        <div class="slots-grid" role="radiogroup" aria-label="Orario di inizio" data-times></div>
+        <div class="slots-foot">
+          <p class="slots-pick" aria-live="polite" data-pick>Scegli un orario.</p>
+          <a class="pill pill-solid pill-lg" href="#demo-wa" data-slot-cta><svg class="i"><use href="#wa"/></svg> Chiedi se c'è posto</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 · CORSI: scorrimento orizzontale -->
+    <section class="courses" id="corsi" aria-labelledby="courses-title">
+      <div class="courses-intro">
+        <h2 id="courses-title">Cinque modi<br>di muoversi</h2>
+        <div class="quiz">
+          <p id="quiz-q">Cosa cerchi, oggi?</p>
+          <div class="quiz-chips" role="group" aria-labelledby="quiz-q">
+            <button type="button" data-goto="corso-lieve">Allenarmi in poco tempo</button>
+            <button type="button" data-goto="corso-forza">Rinforzare i muscoli</button>
+            <button type="button" data-goto="corso-equilibrio">Muovermi meglio</button>
+            <button type="button" data-goto="corso-pilates">Lavorare sul core</button>
+            <button type="button" data-goto="corso-barre">Allenarmi a ritmo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="courses-pin" data-courses>
+        <div class="courses-track" data-courses-track>
+          <article class="course c1" id="corso-lieve">
+            <h3 class="course-name">LIEVE</h3>
+            <div class="course-grid">
+              <div class="course-info">
+                <p class="course-payoff">Il circuito del club</p>
+                <p>La mezz'ora che dà il nome al club: pesi leggeri in piedi e corpo libero, in gruppo, con l'istruttrice che corregge e incoraggia.</p>
+                <dl class="course-meta">
+                  <div><dt>Intensità</dt><dd><span class="meter" style="--v:3" aria-hidden="true"></span>Per tutte</dd></div>
+                  <div><dt>Incluso</dt><dd>Colloquio iniziale</dd></div>
+                </dl>
+              </div>
+              <figure class="course-photo"><img src="assets/img/stretching-1600.webp" width="1600" height="1067" loading="lazy" alt="Un gruppo di donne in affondo laterale, tutte insieme, in una sala bianca."></figure>
+            </div>
+          </article>
+          <article class="course c2" id="corso-forza">
+            <h3 class="course-name">FORZA</h3>
+            <div class="course-grid">
+              <div class="course-info">
+                <p class="course-payoff">Muscoli più sicuri</p>
+                <p>Esercizi progressivi con macchine ed elastici per gambe, schiena e braccia. Si aumenta il carico solo quando sei pronta.</p>
+                <dl class="course-meta">
+                  <div><dt>Intensità</dt><dd><span class="meter" style="--v:2" aria-hidden="true"></span>Media</dd></div>
+                  <div><dt>Da portare</dt><dd>Asciugamano</dd></div>
+                </dl>
+              </div>
+              <figure class="course-photo"><img src="assets/img/sala-attrezzi-1600.webp" width="1600" height="900" loading="lazy" alt="La sala attrezzi luminosa, con la vetrata sul verde."></figure>
+            </div>
+          </article>
+          <article class="course c3" id="corso-equilibrio">
+            <h3 class="course-name">EQUILIBRIO</h3>
+            <div class="course-grid">
+              <div class="course-info">
+                <p class="course-payoff">Postura e mobilità</p>
+                <p>Lavoro lento su articolazioni, schiena ed equilibrio. Per chi passa molte ore seduta o vuole ritrovare movimenti più sciolti.</p>
+                <dl class="course-meta">
+                  <div><dt>Intensità</dt><dd><span class="meter" style="--v:1" aria-hidden="true"></span>Bassa</dd></div>
+                  <div><dt>Da portare</dt><dd>Calzini comodi</dd></div>
+                </dl>
+              </div>
+              <figure class="course-photo"><img src="assets/img/seduta-1600.webp" width="1600" height="1067" loading="lazy" alt="Una donna seduta sul pavimento si allunga nella luce del mattino."></figure>
+            </div>
+          </article>
+          <article class="course c4" id="corso-pilates">
+            <h3 class="course-name">PILATES</h3>
+            <div class="course-grid">
+              <div class="course-info">
+                <p class="course-payoff">Il centro del corpo</p>
+                <p>Pilates a corpo libero e al reformer: addome, respirazione e controllo. Movimenti piccoli e precisi.</p>
+                <dl class="course-meta">
+                  <div><dt>Intensità</dt><dd><span class="meter" style="--v:3" aria-hidden="true"></span>Per tutte</dd></div>
+                  <div><dt>Da portare</dt><dd>Calzini antiscivolo</dd></div>
+                </dl>
+              </div>
+              <figure class="course-photo"><img src="assets/img/pilates-1600.webp" width="1600" height="1067" loading="lazy" alt="Esercizio di pilates al reformer in una sala con le pareti verdi."></figure>
+            </div>
+          </article>
+          <article class="course c5" id="corso-barre">
+            <h3 class="course-name">BARRÈ</h3>
+            <div class="course-grid">
+              <div class="course-info">
+                <p class="course-payoff">A tempo di musica</p>
+                <p>Passi presi dalla danza e tonificazione leggera, con la musica alta. Si lavora sulla postura e ci si diverte.</p>
+                <dl class="course-meta">
+                  <div><dt>Intensità</dt><dd><span class="meter" style="--v:2" aria-hidden="true"></span>Media</dd></div>
+                  <div><dt>Da portare</dt><dd>Calzini antiscivolo</dd></div>
+                </dl>
+              </div>
+              <figure class="course-photo"><img src="assets/img/sala-lezione-1600.webp" width="1600" height="1067" loading="lazy" alt="Donne che ballano in una sala con il parquet e gli specchi."></figure>
+            </div>
+          </article>
+        </div>
+        <div class="courses-progress" aria-hidden="true"><span data-courses-bar></span></div>
+      </div>
+    </section>
+
+    <!-- 6 · FONDATRICE E TEAM -->
+    <section class="founder" id="fondatrice" aria-labelledby="founder-title">
+      <div class="founder-grid">
+        <figure class="founder-photo" data-reveal-clip>
+          <img src="assets/img/fondatrice-1600.webp" width="1600" height="1200" loading="lazy" alt="La fondatrice di LIEVE sorride davanti a una parete rosa.">
+        </figure>
+        <div class="founder-copy">
+          <p class="founder-kicker">La fondatrice</p>
+          <h2 id="founder-title">Elena</h2>
+          <p>Quindici anni da istruttrice in palestre grandi e affollate, e una domanda che tornava sempre: perché tante donne smettono dopo il primo mese?</p>
+          <p>LIEVE è nata per rispondere: sale piccole, orari brevi, un'istruttrice sempre presente e nessuno che guarda dall'altra parte della sala.</p>
+          <blockquote class="founder-quote">
+            <svg aria-hidden="true"><use href="#farfalla"/></svg>
+            <p>Voglio che l'allenamento diventi un'abitudine, non un'impresa.</p>
+          </blockquote>
+        </div>
+      </div>
+
+      <figure class="team" data-team>
+        <div class="team-img"><img src="assets/img/team-1600.webp" width="1600" height="1067" loading="lazy" alt="Una lezione nella sala grande con le vetrate, le socie in posizione sui tappetini."></div>
+        <figcaption>
+          <span class="team-title">Il team</span>
+          <span>Istruttrici, tutor e reception. Quando arrivi c'è sempre qualcuna che ti aspetta.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- 7 · RECENSIONI (dimostrative) -->
+    <section class="voices" aria-labelledby="voices-title">
+      <div class="voices-head">
+        <h2 id="voices-title">Cosa dicono le socie</h2>
+        <p><span class="stars" aria-hidden="true">★★★★★</span> Recensioni dimostrative, scritte per la demo</p>
+      </div>
+      <div class="voices-rows">
+        <div class="voices-row" data-marquee="left">
+          <figure class="vcard"><blockquote>“Ho iniziato a gennaio pensando di durare due settimane. Siamo a ottobre e vengo tre volte a settimana.”</blockquote><figcaption>Sara B.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Mezz'ora in pausa pranzo e torno in ufficio. Non pensavo bastasse, invece la schiena ringrazia.”</blockquote><figcaption>Giovanna T.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Le istruttrici ti correggono senza farti sentire in imbarazzo. Per me era la cosa più importante.”</blockquote><figcaption>Nadia R.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Sale luminose, spogliatoi puliti e un caffè sul divanetto dopo la lezione. Piccole cose che contano.”</blockquote><figcaption>Monica F.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+        </div>
+        <div class="voices-row" data-marquee="right">
+          <figure class="vcard"><blockquote>“Orari comodi anche di sera. Il Barrè del giovedì è diventato il mio appuntamento fisso.”</blockquote><figcaption>Ilaria C.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Avevo paura di essere troppo fuori forma. Mi hanno fatto partire piano e adesso alzo pesi veri.”</blockquote><figcaption>Rita M.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Ci vengo con mia figlia: lei fa Pilates, io il circuito. Ci aspettiamo al bar.”</blockquote><figcaption>Anna P.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+          <figure class="vcard"><blockquote>“Un ambiente tranquillo, si ride parecchio e nessuno ti mette fretta.”</blockquote><figcaption>Lucia D.<span class="demo-tag">Recensione dimostrativa</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 · GALLERIA -->
+    <section class="inside" aria-labelledby="inside-title">
+      <h2 id="inside-title" class="inside-title">Dentro<br>LIEVE</h2>
+      <div class="inside-grid">
+        <figure class="g g1" data-speed="0.12"><img src="assets/img/festa-1600.webp" width="1600" height="1067" loading="lazy" alt="Due socie sorridenti con i palloncini rosa alla festa di apertura."></figure>
+        <figure class="g g2" data-speed="-0.18"><img src="assets/img/studio-800.webp" width="800" height="1067" loading="lazy" alt="Tappetini e piccoli attrezzi pronti nella sala corsi."></figure>
+        <figure class="g g3" data-speed="0.08"><img src="assets/img/reception-1600.webp" width="1600" height="1067" loading="lazy" alt="L'ingresso con le piante e le poltroncine dove si aspetta la lezione."></figure>
+        <figure class="g g4" data-speed="-0.1"><img src="assets/img/team-salto-800.webp" width="800" height="533" loading="lazy" alt="Socie sdraiate sul parquet durante gli esercizi a terra."></figure>
+        <figure class="g g5" data-speed="0.2"><img src="assets/img/palloncini-800.webp" width="800" height="1200" loading="lazy" alt="Una socia sorride con un mazzo di palloncini colorati."></figure>
+      </div>
+    </section>
+
+    <!-- 9 · CARTA PROVA -->
+    <section class="pass" id="pass" aria-labelledby="pass-title">
+      <div class="pass-head">
+        <h2 id="pass-title">Prima di iscriverti,<br>provaci.</h2>
+        <p class="pass-intro">Con la Carta Prova vieni al club per 14 giorni a 24 €. Conosci le istruttrici, provi i corsi e decidi con calma.</p>
+      </div>
+      <div class="pass-grid">
+        <div class="pass-card-wrap" data-tilt>
+          <div class="pass-card" data-card>
+            <div class="pc-sheen" aria-hidden="true"></div>
+            <div class="pc-top">
+              <span class="pc-word">LIEVE</span>
+              <span class="pc-price">24 €</span>
+            </div>
+            <p class="pc-title">Carta<br>Prova</p>
+            <div class="pc-rows">
+              <div><span>Intestata a</span><b data-card-name>Il tuo nome</b></div>
+              <div><span>Validità</span><b data-card-dates>14 giorni dal primo ingresso</b></div>
+            </div>
+            <div class="pc-foot">
+              <span>Ingressi liberi · colloquio iniziale · tutti i corsi</span>
+              <i class="pc-code" aria-hidden="true"></i>
+            </div>
+          </div>
+          <p class="pass-note">24 € una volta sola, scalati se ti iscrivi.</p>
+        </div>
+
+        <form class="pass-form" data-pass-form novalidate>
+          <ul class="pass-list">
+            <li>Ingressi liberi per 14 giorni</li>
+            <li>Un colloquio iniziale con un'istruttrice</li>
+            <li>Tutti e cinque i corsi</li>
+            <li>Solo donne, in sale piccole</li>
+          </ul>
+          <div class="field">
+            <label for="f-nome">Come ti chiami?</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="given-name" required data-name-input>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-tel">Telefono</label>
+              <input id="f-tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required>
+            </div>
+            <div class="field">
+              <label for="f-data">Quando vorresti iniziare? <span class="optional">(facoltativo)</span></label>
+              <input id="f-data" name="data" type="date" data-date-input>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-msg">Qualcosa che dovremmo sapere? <span class="optional">(facoltativo)</span></label>
+            <textarea id="f-msg" name="messaggio" rows="2" placeholder="Es. è la prima volta in palestra"></textarea>
+          </div>
+          <div class="check">
+            <input id="f-privacy" name="privacy" type="checkbox" required>
+            <label for="f-privacy">Ho letto l'<a href="#privacy">informativa privacy</a> e accetto di essere ricontattata.</label>
+          </div>
+          <p class="form-error" role="alert" data-form-error hidden></p>
+          <button class="pill pill-solid pill-lg pill-block" type="submit"><svg class="i"><use href="#wa"/></svg> Richiedi la Carta Prova</button>
+          <p class="form-help">Sito dimostrativo: il messaggio viene mostrato a schermo e non parte. Nessun dato lascia il tuo browser.</p>
+          <a class="pass-question" href="#demo-wa?text=Ciao%20LIEVE!%20Ho%20una%20domanda%20sulla%20Carta%20Prova.">Hai una domanda? Scrivici</a>
+        </form>
+      </div>
+    </section>
+
+    <!-- 10 · FAQ + CONTATTI -->
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Domande<br>frequenti</h2>
+      <div class="faq-list">
+        <details><summary>Il club è solo per donne?</summary><p>Sì. Sale, corsi e spogliatoi sono pensati solo per le donne, e lo sono anche le istruttrici.</p></details>
+        <details><summary>Non mi alleno da tanto tempo. Va bene lo stesso?</summary><p>Sì. Si comincia con un colloquio: l'istruttrice capisce da dove parti e ti propone il corso giusto. In sala non sei mai da sola.</p></details>
+        <details><summary>Quanto dura una lezione?</summary><p>Il circuito LIEVE dura 30 minuti e si parte ogni mezz'ora. Pilates, Barrè, Forza ed Equilibrio durano 45 minuti.</p></details>
+        <details><summary>Cosa comprende la Carta Prova?</summary><p>Quattordici giorni di ingressi liberi, un colloquio iniziale e tutti i corsi. Costa 24 €, che vengono scalati dalla quota se poi ti iscrivi.</p></details>
+        <details><summary>Cosa devo portare?</summary><p>Abiti comodi, scarpe pulite e un asciugamano. Per Pilates e Barrè servono i calzini antiscivolo; per Equilibrio bastano calzini comodi.</p></details>
+      </div>
+    </section>
+
+    <section class="visit" id="contatti" aria-labelledby="visit-title">
+      <div class="visit-copy">
+        <h2 id="visit-title">Ti aspettiamo<br>in via dei Tigli</h2>
+        <dl class="visit-list">
+          <div><dt>Dove</dt><dd>Via dei Tigli 8<br>Pianvecchio (Piemonte)</dd></div>
+          <div><dt>Quando</dt><dd>Lun–ven 8:00–20:30<br>Sabato 9:00–13:00</dd></div>
+          <div><dt>Telefono</dt><dd><a href="tel:+390000000000">+39 000 000 0000</a></dd></div>
+        </dl>
+        <div class="visit-ctas">
+          <a class="pill pill-solid pill-lg" href="#demo-wa?text=Ciao%20LIEVE!%20Mi%20mandate%20le%20indicazioni%20per%20arrivare%3F">Chiedi come arrivare</a>
+          <a class="pill pill-line pill-lg" href="#demo-wa?text=Ciao%20LIEVE!%20Vorrei%20qualche%20informazione."><svg class="i"><use href="#wa"/></svg> Scrivici</a>
+        </div>
+      </div>
+      <div class="visit-map">
+        <img src="assets/img/mappa.svg" width="1200" height="675" loading="lazy" alt="Mappa illustrata di Pianvecchio con la posizione del club in via dei Tigli.">
+        <span class="map-pin" aria-hidden="true"><svg><use href="#farfalla"/></svg></span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-word" aria-hidden="true">LIEVE</p>
+    <div class="footer-row">
+      <p>LIEVE club femminile<br>Via dei Tigli 8, Pianvecchio (Piemonte)<br>info@lieve-club-femminile.example</p>
+      <nav aria-label="Note legali">
+        <a href="#privacy" id="privacy">Privacy policy</a>
+        <a href="#cookie">Cookie policy</a>
+        <a href="crediti-fotografici.html">Crediti foto</a>
+      </nav>
+      <p>© <span data-year>2026</span> LIEVE club femminile<br><span class="demo-credit">Sito dimostrativo</span></p>
+    </div>
+    <p class="demo-note">Attività di fantasia: nomi, recapiti, prezzi e recensioni sono inventati. Sito dimostrativo realizzato da <a href="https://www.modicamichele.it">Michele Modica</a>.</p>
+  </footer>
+
+  <div class="dock" data-dock>
+    <a class="dock-pass" href="#pass"><span>Prova 14 giorni</span><b>24 €</b></a>
+    <a class="dock-wa" href="#demo-wa?text=Ciao%20LIEVE!%20Vorrei%20qualche%20informazione." aria-label="Scrivici in chat (simulato)"><svg><use href="#wa"/></svg></a>
+  </div>
+
+  <dialog class="demo-dialog" data-demo aria-labelledby="demo-title">
+    <h2 id="demo-title">Messaggio pronto</h2>
+    <p>Su un sito vero questo testo si aprirebbe nella chat del club. Qui è una demo: non viene inviato niente a nessuno.</p>
+    <pre data-demo-text></pre>
+    <button class="pill pill-solid" type="button" data-demo-close>Ho capito</button>
+  </dialog>
+
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
